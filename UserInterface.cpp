@@ -6,6 +6,7 @@
  */
 
 #include "UserInterface.h"
+static int lcdState;
 //PERSE
 UserInterface::UserInterface(LiquidCrystal *getLcd) {
 	lcd = getLcd;
@@ -32,6 +33,22 @@ void UserInterface::printMenu(int mode,int pascal){
 
 	}else{
 
+	}
+	//1 is manual mode, 2 automatic mode, 3 is pressure set mode
+	switch(lcdState) {
+		case 1 :
+			sprintf(speed,"Speed %3lu%",calc.getSpeedPercentage());
+			lcd->setCursor(0,0);
+			lcd->print(speed);
+
+			sprintf(pascal,"Manual %2lu Pa",calc.getPascal);
+			lcd->setCursor(0,1);
+			lcd->print(pascal);
+			break;
+		case 2 :
+			break;
+		case 3 :
+			break;
 	}
 }
 
