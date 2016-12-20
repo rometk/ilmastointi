@@ -21,6 +21,7 @@ void UserInterface::printMenu(int mode,int pascal){
 	char[32] speed;
 	char[32] pascal;
 
+	//0 is manual mode, 1 automatic mode, 2 is pressure set mode
 	switch(lcdState) {
 		case 1 :
 			sprintf(speed,"Speed %3lu%",calc.getSpeedPercentage());
@@ -36,9 +37,6 @@ void UserInterface::printMenu(int mode,int pascal){
 		case 3 :
 			break;
 	}
-
-	}
-	//1 is manual mode, 2 automatic mode, 3 is pressure set mode
 	
 }
 
