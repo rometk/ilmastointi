@@ -18,8 +18,8 @@ UserInterface::~UserInterface() {
 }
 
 void UserInterface::printMenu(int lcdState,int getPascal){
-	char[32] speed;
-	char[32] pascal;
+	char speed[32];
+	char pascal[32];
 
 	//0 is manual mode, 1 automatic mode, 2 is pressure set mode
 	switch(lcdState) {
