@@ -5,18 +5,18 @@
  *      Author: RometKalpus
  */
 
-#include "calculateStuff.h"
+#include "CalculateStuff.h"
 
-calculateStuff::calculateStuff() {
+CalculateStuff::CalculateStuff() {
 	// TODO Auto-generated constructor stub
 
 }
 
-calculateStuff::~calculateStuff() {
+CalculateStuff::~CalculateStuff() {
 	// TODO Auto-generated destructor stub
 }
 
-int setSpeed(int speed,DigitalIoPin *sw1,DigitalIoPin *sw2){
+int CalculateStuff::setSpeed(int speed,DigitalIoPin *sw1,DigitalIoPin *sw2){
 	thisSpeed = speed;
 	if(sw1->read()){
 		speed+=100;
@@ -26,12 +26,8 @@ int setSpeed(int speed,DigitalIoPin *sw1,DigitalIoPin *sw2){
 	return speed;
 }
 
-int getSpeedPercentage(){
+int CalculateStuff::getSpeedPercentage(){
 	return thisSpeed*100/20000;
-}
-
-int calcSpeed(int pascal){
-
 }
 
 
