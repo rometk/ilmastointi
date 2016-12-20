@@ -10,10 +10,10 @@
 
 #include "DigitalIoPin.h"
 
-class calculateStuff {
+class CalculateStuff {
 public:
-	calculateStuff();
-	virtual ~calculateStuff();
+	CalculateStuff();
+	virtual ~CalculateStuff();
 	int setSpeed(int speed,DigitalIoPin *sw1,DigitalIoPin *sw2);
 	int getSpeedPercentage();
 private:
