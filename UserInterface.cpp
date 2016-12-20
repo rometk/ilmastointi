@@ -17,7 +17,7 @@ UserInterface::~UserInterface() {
 	// TODO Auto-generated destructor stub
 }
 
-void UserInterface::printMenu(int lcdState,int pascal){
+void UserInterface::printMenu(int lcdState,int getPascal){
 	char[32] speed;
 	char[32] pascal;
 
@@ -28,7 +28,7 @@ void UserInterface::printMenu(int lcdState,int pascal){
 			lcd->setCursor(0,0);
 			lcd->print(speed);
 
-			sprintf(pascal,"Manual %2lu Pa",pascal);
+			sprintf(pascal,"Manual %2lu Pa",getPascal);
 			lcd->setCursor(0,1);
 			lcd->print(pascal);
 			break;
