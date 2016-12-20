@@ -21,27 +21,13 @@ void UserInterface::printMenu(int mode,int pascal){
 	char[32] speed;
 	char[32] pascal;
 
-	if(mode==0){
-		sprintf(speed,"Speed %3lu%",calc.getSpeedPercentage());
-		lcd->setCursor(0,0);
-		lcd->print(speed);
-
-		sprintf(pascal,"Manual %2lu Pa",calc.getPascal);
-		lcd->setCursor(0,1);
-		lcd->print(pascal);
-	}else if(mode==1){
-
-	}else{
-
-	}
-	//1 is manual mode, 2 automatic mode, 3 is pressure set mode
 	switch(lcdState) {
 		case 1 :
 			sprintf(speed,"Speed %3lu%",calc.getSpeedPercentage());
 			lcd->setCursor(0,0);
 			lcd->print(speed);
 
-			sprintf(pascal,"Manual %2lu Pa",calc.getPascal);
+			sprintf(pascal,"Manual %2lu Pa",pascal);
 			lcd->setCursor(0,1);
 			lcd->print(pascal);
 			break;
@@ -50,6 +36,10 @@ void UserInterface::printMenu(int mode,int pascal){
 		case 3 :
 			break;
 	}
+
+	}
+	//1 is manual mode, 2 automatic mode, 3 is pressure set mode
+	
 }
 
 
