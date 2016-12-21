@@ -26,6 +26,15 @@ int CalculateStuff::setSpeed(int speed,DigitalIoPin *sw1,DigitalIoPin *sw2){
 	return speed;
 }
 
+int CalculateStuff::setPascal(int newPascal,DigitalIoPin *sw1,DigitalIoPin *sw2){
+	if(sw1->read()){
+		newPascal++;
+	}else if(sw2->read()){
+		newPascal--;
+	}
+	return newPascal;
+}
+
 int CalculateStuff::getSpeedPercentage(){
 	return thisSpeed*100/20000;
 }
@@ -35,15 +44,6 @@ int CalculateStuff::calculateSpeed(int pascal, int newPascal, int speed){
 	if(difference > -2 && difference < 2);
 	else if(difference < -2) speed += 100;
 	else if(difference > 2) speed -= 100;
-	
-	return speed;
-}
 
-int CalculateStuff::setPascal(int newPascal){
-	if(sw1->read()){
-		newPascal++;
-	}else if(sw2->read()){
-		newPascal--;
-	}
-	return newPascal;
+	return speed;
 }
