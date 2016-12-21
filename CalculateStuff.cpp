@@ -30,11 +30,13 @@ int CalculateStuff::getSpeedPercentage(){
 	return thisSpeed*100/20000;
 }
 
-void CalculateStuff::calculateSpeed(int pascal, int newPascal, int speed){
+int CalculateStuff::calculateSpeed(int pascal, int newPascal, int speed){
 	int difference = pascal - newPascal;
 	if(difference > -2 && difference < 2);
 	else if(difference < -2) speed += 100;
 	else if(difference > 2) speed -= 100;
+	
+	return speed;
 }
 
 
