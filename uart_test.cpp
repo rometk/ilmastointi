@@ -262,26 +262,28 @@ int main(void)
 			DEBUGOUT("Error reading pressure.\r\n");
 		}
 
-		manualUi.printMenu(lcdState,pascal);
+		manualUi.printMenu(lcdState,pascal,newPascal);
 		if(sw3.read()){
 			lcdState++;
+			lcd.clear();
 			if(lcdState==3){
 				lcdState=0;
 			}
 			while(sw3.read());
-		}
-		if(sw1.read() || sw2.read()){
+		}else if(sw1.read() || sw2.read()){
 			if(lcdState==0){
 				//set manual speed
-				speed = calc.setSpeed(speed,sw1,sw2);
+				speed = calc.setSpeed(speed,&sw1,&sw2);
 			}else if(lcdState==1){
 				//set newPascal (Pascal to be inputted)
-				newPascal = calc.setPascal(newPascal);
-			}else{
-				//return calculated speed relative to newPascal
-				speed = calc.calculateSpeed(pascal,newPascal,speed);
+				newPascal = calc.setPascal(newPascal,&sw1,&sw2);
 			}
 			while(sw1.read() || sw2.read());
+		}
+
+		if(lcdState==2){
+			//return calculated speed relative to newPascal
+			speed = calc.calculateSpeed(pascal,newPascal,speed);
 		}
 
 	}
