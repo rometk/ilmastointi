@@ -17,6 +17,7 @@ public:
 	int setSpeed(int speed,DigitalIoPin *sw1,DigitalIoPin *sw2);
 	int getSpeedPercentage();
 	int calculateSpeed(int pascal, int newPascal, int speed);
+	int setPascal(int newPascal);
 private:
 	int thisSpeed;
 };
