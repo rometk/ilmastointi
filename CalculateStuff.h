@@ -16,7 +16,7 @@ public:
 	virtual ~CalculateStuff();
 	int setSpeed(int speed,DigitalIoPin *sw1,DigitalIoPin *sw2);
 	int getSpeedPercentage();
-	void calculateSpeed(int pascal, int newPascal, int speed);
+	int calculateSpeed(int pascal, int newPascal, int speed);
 private:
 	int thisSpeed;
 };
