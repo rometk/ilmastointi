@@ -39,4 +39,11 @@ int CalculateStuff::calculateSpeed(int pascal, int newPascal, int speed){
 	return speed;
 }
 
-
+int CalculateStuff::setPascal(int newPascal){
+	if(sw1->read()){
+		newPascal++;
+	}else if(sw2->read()){
+		newPascal--;
+	}
+	return newPascal;
+}
