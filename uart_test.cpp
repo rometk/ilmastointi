@@ -270,7 +270,9 @@ int main(void)
 			while(sw3.read());
 		}
 		if(sw1.read() || sw2.read()){
-			speed = calc.setSpeed(speed,sw1,sw2);
+			if(lcdState==1){
+				speed = calc.setSpeed(speed,sw1,sw2);
+			}
 			while(sw1.read() || sw2.read());
 		}
 
