@@ -247,6 +247,7 @@ int main(void)
 	int pascal = 0;
 	int lcdState=0;
 	int speed = 2000;
+	int newPascal = 0;
 
 	while (1) {
 		setFrequency(node,speed);
@@ -270,8 +271,15 @@ int main(void)
 			while(sw3.read());
 		}
 		if(sw1.read() || sw2.read()){
-			if(lcdState==1){
+			if(lcdState==0){
+				//set manual speed
 				speed = calc.setSpeed(speed,sw1,sw2);
+			}else if(lcdState==1){
+				//set newPascal (Pascal to be inputted)
+				newPascal = calc.setPascal(newPascal);
+			}else{
+				//return calculated speed relative to newPascal
+				speed = calc.calculateSpeed(pascal,newPascal,speed);
 			}
 			while(sw1.read() || sw2.read());
 		}
