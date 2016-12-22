@@ -17,7 +17,7 @@ UserInterface::~UserInterface() {
 	// TODO Auto-generated destructor stub
 }
 
-void UserInterface::printMenu(int lcdState,int getPascal){
+void UserInterface::printMenu(int lcdState,int getPascal,int newPascal){
 	char speed[32];
 	char pascal[32];
 
