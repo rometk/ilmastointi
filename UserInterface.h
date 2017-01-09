@@ -15,7 +15,7 @@ class UserInterface {
 public:
 	UserInterface(LiquidCrystal *lcd);
 	virtual ~UserInterface();
-	void printMenu(int mode,int pascal,int newPascal);
+	void printMenu(int mode,int pascal);
 private:
 	LiquidCrystal *lcd;
 	calculateStuff calc;

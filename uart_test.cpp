@@ -29,7 +29,6 @@
 #include "LiquidCrystal.h"
 #include "DigitalIoPin.h"
 #include "I2C.h"
-#include "CalculateStuff.h"
 
 /*****************************************************************************
  * Private types/enumerations/variables
@@ -230,7 +229,6 @@ int main(void)
 
 	LiquidCrystal lcd(&rs,&enable,&d4,&d5,&d6,&d7);
 	UserInterface manualUi(&lcd);
-	CalculateStuff calc;
 
 	node.begin(9600); // set transmission rate - other parameters are set inside the object and can be changed here
 
@@ -244,48 +242,24 @@ int main(void)
 	int16_t pressure = 0;
 	uint16_t data[6];
 	uint8_t pressureData[3];
-	int pascal = 0;
-	int lcdState=0;
-	int speed = 2000;
-	int newPascal = 0;
 
 	while (1) {
-		setFrequency(node,speed);
+		setFrequency(node,2000);
 
 		if (i2c.transaction(0x40, &readPressureCmd, 1, pressureData, 3)) {
 			/* Output temperature. */
 			pressure = (pressureData[0] << 8) | pressureData[1];
-			pascal = pressure/240;
-			DEBUGOUT("Pressure read over I2C is %.1f Pa\r\n", pascal);
+			DEBUGOUT("Pressure read over I2C is %.1f Pa\r\n",	pressure/240.0);
 		}
 		else {
 			DEBUGOUT("Error reading pressure.\r\n");
 		}
 
-		manualUi.printMenu(lcdState,pascal,newPascal);
-		if(sw3.read()){
-			lcdState++;
-			lcd.clear();
-			if(lcdState==3){
-				lcdState=0;
-			}
-			while(sw3.read());
-		}else if(sw1.read() || sw2.read()){
-			if(lcdState==0){
-				//set manual speed
-				speed = calc.setSpeed(speed,&sw1,&sw2);
-			}else if(lcdState==1){
-				//set newPascal (Pascal to be inputted)
-				newPascal = calc.setPascal(newPascal,&sw1,&sw2);
-			}
-			while(sw1.read() || sw2.read());
-		}
 
-		if(lcdState==2){
-			//return calculated speed relative to newPascal
-			speed = calc.calculateSpeed(pascal,newPascal,speed);
-		}
+		// slave: read (6) 16-bit registers starting at register 2 to RX buffer
+		result = node.readHoldingRegisters(2, 6);
 
+		Sleep(1000);
 	}
 
 	return 1;
